@@ -73,3 +73,8 @@ change to branch
 git checkout [name]
 ```
 
+## Commit Messages
+
+`add [message]`
+`change [message]`
+`fix [message]`
