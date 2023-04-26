@@ -19,7 +19,10 @@ app.post("/chat", async (req, res) => {
     const prompt = req.body.prompt;
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: prompt }],
+      messages: [
+        { role: "system", content: "Je genereert teksten die voorgelezen moeten worden door mensen die nederlands aan het leren lezen zijn." },
+        { role: "user", content: prompt },
+      ],
     });
     res.status(200).send(response.data);
   } catch (error) {
