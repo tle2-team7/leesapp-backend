@@ -31,6 +31,20 @@ app.post("/chat", async (req, res) => {
   }
 });
 
+app.get("/start", async (req, res) => {
+  try {
+    const prompt = req.body.prompt;
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "system", content: "Je genereert teksten die voorgelezen moeten worden door mensen die nederlands aan het leren lezen zijn." }],
+    });
+    res.status(200).send(response.data);
+  } catch (error) {
+    res.status(500).send(error);
+    console.error(error);
+  }
+});
+
 app.get("/", (req, res) => {
   try {
     res.status(200).send("Hello world");
