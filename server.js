@@ -20,7 +20,7 @@ app.post("/chat", async (req, res) => {
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: "Je genereert teksten die voorgelezen moeten worden door mensen die nederlands aan het leren lezen zijn." },
+        { role: "system", content: "Genereer een Nederlandse zin op A1 niveau" },
         { role: "user", content: prompt },
       ],
     });
@@ -36,7 +36,7 @@ app.get("/start", async (req, res) => {
     const prompt = req.body.prompt;
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "system", content: "Je genereert teksten die voorgelezen moeten worden door mensen die nederlands aan het leren lezen zijn." }],
+      messages: [{ role: "system", content: "Je genereert teksten op A2 leesniveau die voorgelezen gaan worden door mensen die nederlands aan het leren lezen zijn. Je genereerd elke keer met 1 nieuwe zin, de zin die voorgelezen moet worden begin je met lees voor: [DE ZIN DIE VOORGELEZEN MOET WORDEN]. De lezer zal deze voorlezen en op basis van de fouten genereer je een nieuwe zin waar het verkeerde woord in zit" }],
     });
     res.status(200).send(response.data);
   } catch (error) {
