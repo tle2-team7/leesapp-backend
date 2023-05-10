@@ -17,7 +17,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 //main endpoint for interacting with chatGPT
-app.post("/start", async (req, res) => {
+app.post("/chat", async (req, res) => {
   try {
     const prompt = req.body.prompt;
     const response = await openai.createChatCompletion({
@@ -30,7 +30,21 @@ app.post("/start", async (req, res) => {
     res.status(200).send(response.data);
   } catch (error) {
     res.status(500).send(error);
-    console.error(error);
+    console.error(`Error!!!! ${error}`);
+  }
+});
+
+//main endpoint for interacting with chatGPT
+app.get("/start", async (req, res) => {
+  try {
+    const response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "system", content: config.START_PROMPT }],
+    });
+    res.status(200).send(response.data);
+  } catch (error) {
+    res.status(500).send(error);
+    console.error(`Error!!!! ${error}`);
   }
 });
 
