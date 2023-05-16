@@ -34,7 +34,7 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-//main endpoint for interacting with chatGPT
+//endpoint for a start message
 app.get("/start", async (req, res) => {
   try {
     const response = await openai.createChatCompletion({
