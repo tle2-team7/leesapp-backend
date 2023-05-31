@@ -30,7 +30,7 @@ app.post("/chat", async (req, res) => {
     res.status(200).send(response.data);
   } catch (error) {
     res.status(500).send(error);
-    console.error(`Error!!!! ${error}`);
+    console.error(error);
   }
 });
 
