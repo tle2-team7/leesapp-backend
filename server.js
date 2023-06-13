@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import config from "./config.json" assert { type: "json" };
+import startPrompt from "./startPrompt.json" assert { type: "json" };
 import { Configuration, OpenAIApi } from "openai";
 import bodyParser from "body-parser";
 
@@ -23,7 +24,7 @@ app.post("/chat", async (req, res) => {
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
-        { role: "system", content: config.START_PROMPT },
+        { role: "system", content: startPrompt.START_PROMPT },
         { role: "user", content: prompt },
       ],
     });
